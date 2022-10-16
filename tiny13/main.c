@@ -59,13 +59,11 @@ int main (void) {
 
     for( i = 0x01; i != 0; i<<=1) {
       send8(i);              
-      Delay(12000);
-     // Delay2(1000);
+      Delay(11000); // this is a loop delay, but also ensures that the output is latched.
     }
     for( i = 0x80; i != 0; i>>=1) {
       send8(i);              
-      Delay(12000);
-     // Delay2(1000);
+      Delay(11000);
     }    
     
          
@@ -83,7 +81,7 @@ void send8 (unsigned int bits) {
     } else {                       SendZero();
     }    
   } 
-  Delay(1); // delay to clock in latch signal
+  Delay(1000); // delay to clock in latch signal
 }
 
 void presend8 (unsigned int bits) {
@@ -94,6 +92,9 @@ void presend8 (unsigned int bits) {
     }    
   }   
 }
+
+
+// these are my awful nop delays, written long before arduino.
 
 void Delay(unsigned int delay) {
   unsigned int x;
